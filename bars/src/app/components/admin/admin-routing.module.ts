@@ -1,3 +1,5 @@
+import { UsersResolver } from './resolvers/users.resolver';
+import { UserResolver } from './resolvers/user.resolver';
 import { HomeComponent } from './components/home/home.component';
 import { ContactsDetailsComponent } from './components/contacts-details/contacts-details.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
@@ -8,8 +10,12 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path: '', component: AdminDashboardComponent,
 children: [
-  {path: 'contacts', component: ContactsComponent},
-  {path: 'contacts/user/:id', component: ContactsDetailsComponent},
+  {path: 'contacts', component: ContactsComponent, resolve: {
+    users: UsersResolver
+  }},
+  {path: 'contacts/user/:id', component: ContactsDetailsComponent, resolve: {
+    user: UserResolver
+  }},
   {path: 'contacts/user', redirectTo: 'contacts', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full' }
