@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-contacts-details',
-  templateUrl: './contacts-details.component.html',
-  styleUrls: ['./contacts-details.component.scss']
+  selector: 'app-note-details',
+  templateUrl: './note-details.component.html',
+  styleUrls: ['./note-details.component.scss']
 })
-export class ContactsDetailsComponent implements OnInit {
+export class NoteDetailsComponent implements OnInit {
   user!: Observable<User>;
   id!: number;
   constructor(
