@@ -1,9 +1,9 @@
+import { Notes } from 'src/app/model/notes.interface';
 import { map, mapTo } from 'rxjs/operators';
 import { ResolveEnd, ResolveStart, Router, ActivatedRoute } from '@angular/router';
-import { AdminService } from '../../services/admin.service';
 import { filter, merge, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../user';
+
 
 @Component({
   selector: 'app-notes',
@@ -14,17 +14,20 @@ export class NotesComponent implements OnInit {
 
 
 
-  personalList!: Observable<User[]>
+  notesList!: Observable<Notes[]>
 
-  constructor(private adminService: AdminService,
+  constructor(
 
     private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
     /* this.personalList = this.adminService.getPersonalList(); */
-    this.personalList = this.activatedRoute.data.pipe(map((data)=> data?.['users']))
-
+    this.notesList = this.activatedRoute.data.pipe(map((data)=> {
+      console.log(data?.['notes'])
+      return data?.['notes']
+    }
+      ))
 
   }
 

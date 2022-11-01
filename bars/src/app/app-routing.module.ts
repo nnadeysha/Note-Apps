@@ -1,12 +1,22 @@
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotesResolver } from './components/admin/resolvers/notes.resolver';
+
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/main-page', pathMatch: 'full'},
+  {path: 'main-page', component: MainPageComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'sign-up', component: SignUpComponent},
+  {path: 'notes', component: NotesComponent, resolve: {
+    notes: NotesResolver
+  }},
   {path: 'admin',
   canActivate: [AuthGuard],
   canDeactivate: [AuthGuard],

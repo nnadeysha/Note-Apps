@@ -6,7 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+  isLoggedIn!: boolean
   constructor(private router: Router) { }
 
   setToken(token: string) {
@@ -17,19 +17,30 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  isLoggedIn() {
+  /* isLoggedIn() {
     return this.getToken() !== null;
-  }
+  } */
 
   login(userInfo: {email: string, password: string}): Observable<string | boolean> {
-    if (userInfo.email === 'admin@gmail.com' && userInfo.password === 'admin123'){
-      this.setToken('hsgdfghsfcas');
+    if (this.getToken() === (userInfo.email+'&'+userInfo.password)){
+      this.isLoggedIn = true;
       return of(true)
     }
     return throwError(() => new Error('Failed Login'))
   }
 
+  signUp(userInfo: {email: string, password: string}) {
+    if(this.getToken() !== (userInfo.email+'&'+userInfo.password)){
+      this.setToken(userInfo.email+'&'+userInfo.password)
+      this.isLoggedIn = true;
+      return of(true)
+    }
+
+    return throwError(() => new Error('Failed Login'))
+  }
+
   logout() {
-    this.router.navigate(['login'])
+    this.router.navigate(['main-page']);
+    this.isLoggedIn = false
   }
 }

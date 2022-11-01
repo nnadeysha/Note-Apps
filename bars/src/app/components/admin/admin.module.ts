@@ -6,8 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MyNotesComponent } from './components/my-notes/my-notes.component';
-import { NotesComponent } from './components/notes/notes.component';
-import { NoteDetailsComponent } from './components/note-details/note-details.component';
+import { NotesComponent } from '../notes/notes.component';
+import { NoteEditComponent } from './components/note-edit/note-edit.component';
 
 
 @NgModule({
@@ -15,9 +15,8 @@ import { NoteDetailsComponent } from './components/note-details/note-details.com
     FooterComponent,
     HeaderComponent,
     MyNotesComponent,
-    NoteDetailsComponent,
-    NotesComponent,
-    AdminDashboardComponent
+    NoteEditComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     CommonModule,
