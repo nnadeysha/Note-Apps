@@ -6,20 +6,19 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { catchError, delay, EMPTY, EmptyError, Observable, of } from 'rxjs';
-import { Notes } from 'src/app/model/notes.interface';
+import { INotes } from 'src/app/model/notes.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoteResolver implements Resolve<Notes> {
+export class NoteResolver implements Resolve<INotes> {
   constructor(
     private notesService: NotesService,
     private router: Router
   ){
 
   }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Notes> {
-    console.log('yes')
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<INotes> {
     return this.notesService.getNote(route.params?.['id']).pipe(
       delay(2000),
       catchError(() => {

@@ -1,6 +1,6 @@
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/users/sign-up/sign-up.component';
+import { LoginComponent } from './components/users/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

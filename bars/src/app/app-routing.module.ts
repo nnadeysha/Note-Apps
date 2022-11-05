@@ -1,6 +1,6 @@
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 import { NotesComponent } from './components/notes/notes.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/users/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';

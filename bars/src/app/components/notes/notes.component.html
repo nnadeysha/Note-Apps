@@ -1,5 +1,5 @@
-<div class="p-1 mb-5">
-  <button class="btn btn-secondary btn-sm" [routerLink]="['../']">Return to main page</button>
+<div *ngIf="!isAuth()" class="p-1 mb-5">
+  <button  class="btn btn-secondary btn-sm" [routerLink]="['../']">Return to main page</button>
 </div>
 <div class="col-4 mx-2 mt-2">
   <div

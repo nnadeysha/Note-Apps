@@ -1,7 +1,8 @@
-import { Notes } from 'src/app/model/notes.interface';
-import { map, mapTo } from 'rxjs/operators';
-import { ResolveEnd, ResolveStart, Router, ActivatedRoute } from '@angular/router';
-import { filter, merge, Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { INotes } from 'src/app/model/notes.interface';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -14,21 +15,25 @@ export class NotesComponent implements OnInit {
 
 
 
-  notesList!: Observable<Notes[]>
+  notesList!: Observable<INotes[]>
 
   constructor(
 
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
     /* this.personalList = this.adminService.getPersonalList(); */
     this.notesList = this.activatedRoute.data.pipe(map((data)=> {
-      console.log(data?.['notes'])
       return data?.['notes']
     }
       ))
 
+  }
+
+  isAuth(): boolean {
+    return this.authService.isLoggedIn
   }
 
 }

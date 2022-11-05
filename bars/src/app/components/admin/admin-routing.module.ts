@@ -6,7 +6,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotesComponent } from '../notes/notes.component';
-import { NoteEditComponent } from './components/note-edit/note-edit.component';
+import { NoteEditComponent } from './components/my-notes/note-edit/note-edit.component';
 
 const routes: Routes = [
   {path: '', component: AdminDashboardComponent,

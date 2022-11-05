@@ -1,4 +1,30 @@
 {
+  "users": [
+    {
+      "name": "gfhfjkf",
+      "email": "admin@gmail.com",
+      "password": "admin123ggggg",
+      "id": 1
+    },
+    {
+      "name": "ffff",
+      "email": "admin@gmail.com",
+      "password": "admin123ggggg",
+      "id": 2
+    },
+    {
+      "name": "xxxxx",
+      "email": "admin@gmail.com",
+      "password": "admin123ggggg",
+      "id": 3
+    },
+    {
+      "name": "ffgfhfj",
+      "email": "admigfgfhfn@gmail.com",
+      "password": "admin123ggggg",
+      "id": 4
+    }
+  ],
   "notes": [
     {
       "name": "first note",

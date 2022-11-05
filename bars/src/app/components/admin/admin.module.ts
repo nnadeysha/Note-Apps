@@ -6,8 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MyNotesComponent } from './components/my-notes/my-notes.component';
-import { NotesComponent } from '../notes/notes.component';
-import { NoteEditComponent } from './components/note-edit/note-edit.component';
+import { NoteEditComponent } from './components/my-notes/note-edit/note-edit.component';
 
 
 @NgModule({

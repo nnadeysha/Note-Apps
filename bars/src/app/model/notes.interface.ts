@@ -1,6 +1,7 @@
-export interface Notes {
+export interface INotes {
+  userId: number,
   name: string,
   date: Date,
   id: number,
-  remark: string
+  remark?: string
 }

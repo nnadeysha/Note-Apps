@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Notes } from 'src/app/model/notes.interface';
+import { INotes } from 'src/app/model/notes.interface';
 
 @Component({
   selector: 'app-note-edit',
@@ -10,7 +10,7 @@ import { Notes } from 'src/app/model/notes.interface';
   styleUrls: ['./note-edit.component.scss']
 })
 export class NoteEditComponent implements OnInit {
-  notes!: Observable<Notes>;
+  notes!: Observable<INotes>;
   id!: number;
   constructor(
     private activatedRoute: ActivatedRoute
