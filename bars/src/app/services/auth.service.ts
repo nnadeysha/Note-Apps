@@ -24,7 +24,7 @@ export class AuthService {
       if (user) {
         this.isLoggedIn = true;
         alert('Login success');
-        this.router.navigate(['admin']);
+        this.router.navigate(['admin'+'/'+`${user.id}`]);
         return of(true);
       } else {
         alert('User not found');

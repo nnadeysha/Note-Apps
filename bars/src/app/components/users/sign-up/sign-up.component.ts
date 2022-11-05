@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
@@ -36,9 +34,5 @@ export class SignUpComponent implements OnInit {
         Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
       ]),
     });
-
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['admin']);
-    }
   }
 }

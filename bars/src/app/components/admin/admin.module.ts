@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MyNotesComponent } from './components/my-notes/my-notes.component';
 import { NoteEditComponent } from './components/my-notes/note-edit/note-edit.component';
+import { NoteComponent } from './components/my-notes/note/note.component';
 
 
 @NgModule({
@@ -16,10 +18,13 @@ import { NoteEditComponent } from './components/my-notes/note-edit/note-edit.com
     MyNotesComponent,
     NoteEditComponent,
     AdminDashboardComponent,
+    NoteComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

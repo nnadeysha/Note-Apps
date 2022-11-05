@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'notes', component: NotesComponent, resolve: {
     notes: NotesResolver
   }},
-  {path: 'admin',
+  {path: 'admin/:id',
   canActivate: [AuthGuard],
   canDeactivate: [AuthGuard],
     loadChildren: () => import('./components/admin/admin.module').then(module => module.AdminModule)
