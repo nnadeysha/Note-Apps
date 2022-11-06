@@ -1,7 +1,7 @@
 export interface INotes {
-  userId: number,
+  userId: string,
   name: string,
-  date: Date,
+  date: string,
   id: number,
   remark?: string
 }

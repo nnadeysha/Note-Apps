@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { filter, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -8,6 +9,7 @@ import { INotes } from 'src/app/model/notes.interface';
 })
 export class NotesService {
   notes: INotes[] = [];
+  notesList!: Observable<INotes[]>
   constructor(
     private http: HttpClient
   ) { }
@@ -20,14 +22,8 @@ export class NotesService {
     return this.http.get<INotes>(`http://localhost:3001/notes/${id}`)
   }
 
-  getMyNotes(user: string) {
-    return this.http.get<INotes[]>('http://localhost:3001/notes')
-  }
 
-  create(note: INotes): Observable<INotes> {
-    return this.http.post<INotes>('http://localhost:3001/notes', note)
-    .pipe(
-      tap(data => this.notes.push(data))
-    )
+  create(note: INotes) {
+    return this.http.post<INotes>('http://localhost:3001/notes', note)/* .pipe(map((res: INotes) => res)) */
   }
 }

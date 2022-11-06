@@ -36,9 +36,9 @@ export class AuthService {
   signUp(userInfo: IUser) {
     this.http.get<IUser[]>('http://localhost:3001/users').subscribe((res) => {
       const user = res.find((person: IUser) => {
-        return person.email !== userInfo.email;
+        return person.email === userInfo.email;
       });
-      if (user) {
+      if (!user) {
         return this.http
           .post<IUser>('http://localhost:3001/users', userInfo)
           .subscribe((res) => {

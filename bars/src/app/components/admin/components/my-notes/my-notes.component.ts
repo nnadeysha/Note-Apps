@@ -1,7 +1,10 @@
+import { NotesService } from './../../../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { INotes } from 'src/app/model/notes.interface';
+import { ModalService } from 'src/app/services/modal.service';
+
 
 @Component({
   selector: 'app-my-notes',
@@ -9,21 +12,31 @@ import { INotes } from 'src/app/model/notes.interface';
   styleUrls: ['./my-notes.component.scss']
 })
 export class MyNotesComponent implements OnInit {
+  idUser: string;
   notesList!: Observable<INotes[]>
+  notes! : INotes[]
   constructor(
     private activatedRoute: ActivatedRoute,
-  ) { }
+    public modalService: ModalService,
+    public notesService: NotesService,
 
-  ngOnInit(): void {
-    this.notesList = this.activatedRoute.data.pipe(map((data)=> {
-      return data?.['notes']
-    }
-      ))
+  ) {
+    this.idUser = activatedRoute.snapshot.params['id'];
+  }
 
-      
+  ngOnInit(){
+    this.notesList = this.notesService.getNotesList().pipe(map((data)=> {
+      return data.filter(note => note.userId === this.idUser.toString())
+    }));
+
   }
 
 
 
 }
-// /p.title.toLowerCase().includes(search.toLowerCase())
+
+/* this.notesList = this.activatedRoute.data.pipe(map((data)=> {
+  return data?.['notes']
+}
+  ))
+ */

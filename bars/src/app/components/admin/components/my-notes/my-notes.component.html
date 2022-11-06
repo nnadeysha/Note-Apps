@@ -1,3 +1,25 @@
-<div>
-  <app-note></app-note>
+
+  <app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
+    <app-note-form></app-note-form>
+  </app-modal>
+
+  <button class="btn btn-secondary btn-lg text-white m-2"
+  (click)="modalService.open()">Add new note</button>
+
+
+  <div class="col-4 mx-2 mt-2 relative">
+    <div
+      class="card bg-dark text-white mt-2"
+      style="border-radius: 1rem"
+      *ngFor="let note of notesList | async"
+    >
+      <div class="card-body p-2 text-center">
+        <div>
+          <h5>{{note.name}} №{{note.id}}</h5>
+          <p>{{note.date}}</p>
+          <p>{{note.remark}}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
