@@ -23,7 +23,20 @@ export class NotesService {
   }
 
 
-  create(note: INotes) {
+  createNote(note: INotes) {
     return this.http.post<INotes>('http://localhost:3001/notes', note)/* .pipe(map((res: INotes) => res)) */
   }
+
+  delete(id: number){
+    return this.http.delete<any>(`http://localhost:3001/notes/${id}`).pipe(map((res: INotes)=> {
+      return res
+    }))
+  }
+
+  update(data: INotes, id: number){
+    return this.http.put<INotes>('http://localhost:3001/notes/'+id, data).pipe(map((res: INotes)=> {
+      return res
+    }))
+  }
 }
+//app.delete('/api/names/:id', (req, res) => { const index = names.indexOf(name); names.splice(index,1); res.send(names); })

@@ -35,7 +35,9 @@ export class NoteFormComponent implements OnInit {
     this.noteModelObj.date = this.noteForm.value.date;
     this.noteModelObj.remark = this.noteForm.value.remark;
     this.noteModelObj.userId = this.noteForm.value.userId;
-    this.notesService.create(this.noteModelObj).subscribe(() => {
+    this.noteModelObj.number = this.noteForm.value.number;
+
+    this.notesService.createNote(this.noteModelObj).subscribe(() => {
       alert("Note Added Successfull");
       this.noteForm.reset();
       this.modalService.close();
@@ -45,6 +47,16 @@ export class NoteFormComponent implements OnInit {
       alert("Something went wrong")
     });
   }
+
+  /* editNote(data: INotes, id: number){
+    this.noteForm.controls['name'].setValue(data.name);
+    this.noteForm.controls['number'].setValue(data.number);
+    this.noteForm.controls['date'].setValue(data.date);
+    this.noteForm.controls['remark'].setValue(data.remark);
+    this.notesService.update(data, id)
+  } */
+
+
 
   ngOnInit(): void {
     this.noteForm = new FormGroup({
@@ -60,6 +72,7 @@ export class NoteFormComponent implements OnInit {
         Validators.maxLength(500),
       ]),
       userId: new FormControl(this.id.toString()),
+      number: new FormControl(0,[ Validators.required,Validators.min(1), Validators.max(10000)])
     });
   }
 }

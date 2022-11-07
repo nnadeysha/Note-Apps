@@ -10,6 +10,12 @@
                     class="text-danger">Name is required (min. length = 2, max. length = 20)</small></p>
               </div>
               <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typeNumberX">Number</label>
+                <input formControlName="number" type="number" id="typeNumberX" class="form-control form-control-lg" />
+                <p *ngIf="this.noteForm.get('number')?.invalid && this.noteForm.get('number')?.touched"><small
+                    class="text-danger">Number is required (min value = 1, max value = 10000)</small></p>
+              </div>
+              <div class="form-outline form-white mb-4">
                 <label class="form-label" for="typeDateX">Date</label>
                 <input formControlName="date" type="date" id="typeDateX" class="form-control form-control-lg" />
                 <p *ngIf="this.noteForm.get('date')?.invalid && this.noteForm.get('date')?.touched"><small

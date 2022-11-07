@@ -1,3 +1,4 @@
+import { NoteFormComponent } from './note-form/note-form.component';
 import { NotesService } from './../../../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,12 +15,12 @@ import { ModalService } from 'src/app/services/modal.service';
 export class MyNotesComponent implements OnInit {
   idUser: string;
   notesList!: Observable<INotes[]>
-  notes! : INotes[]
+  notes! : INotes[];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public modalService: ModalService,
     public notesService: NotesService,
-
   ) {
     this.idUser = activatedRoute.snapshot.params['id'];
   }
@@ -31,12 +32,13 @@ export class MyNotesComponent implements OnInit {
 
   }
 
+  deleteNote(id: number) {
 
+    this.notesService.delete(id).subscribe(res => {
+      alert('Note deleted');
+      this.ngOnInit()
+    })
+  }
 
 }
 
-/* this.notesList = this.activatedRoute.data.pipe(map((data)=> {
-  return data?.['notes']
-}
-  ))
- */

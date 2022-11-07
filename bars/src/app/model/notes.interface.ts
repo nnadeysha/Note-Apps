@@ -3,5 +3,6 @@ export interface INotes {
   name: string,
   date: string,
   id: number,
-  remark?: string
+  remark?: string,
+  number: number
 }
