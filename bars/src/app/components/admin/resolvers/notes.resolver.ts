@@ -19,7 +19,7 @@ export class NotesResolver implements Resolve<INotes[]> {
 
   resolve(): Observable<INotes[]> {
     return this.notesService.getNotesList().pipe(
-      delay(2000)
+      delay(1000)
     )
   }
 }

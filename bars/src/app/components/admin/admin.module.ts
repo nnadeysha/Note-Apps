@@ -1,4 +1,3 @@
-import { NoteFormComponent } from './components/my-notes/note-form/note-form.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -19,7 +18,6 @@ import { MyNotesComponent } from './components/my-notes/my-notes.component';
     HeaderComponent,
     MyNotesComponent,
     AdminDashboardComponent,
-    NoteFormComponent,
     ModalComponent
 
   ],

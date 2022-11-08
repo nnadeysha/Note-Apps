@@ -9,8 +9,12 @@ import { NotesComponent } from '../notes/notes.component';
 
 const routes: Routes = [
   {path: '', component: AdminDashboardComponent,
+
 children: [
-  {path: '', component: MyNotesComponent},
+  {path: '',
+  resolve: {
+    admin: NoteResolver
+  }, component: MyNotesComponent},
   {path: 'notes', component: NotesComponent, resolve: {
     notes: NotesResolver
   }},
@@ -18,8 +22,7 @@ children: [
     note: NoteResolver
   }}, */
   {path: 'notes/note', redirectTo: 'notes', pathMatch: 'full'},
-  /* {path: '', component: MyNotesComponent},
-  {path: '', redirectTo: '', pathMatch: 'full' } */
+
 ]}
 ];
 

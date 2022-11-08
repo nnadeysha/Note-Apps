@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { catchError, delay, map, retry } from 'rxjs/operators';
 import { filter, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -15,8 +15,25 @@ export class NotesService {
   ) { }
 
   getNotesList() {
-    return this.http.get<INotes[]>('http://localhost:3001/notes')
+    return this.http.get<INotes[]>('http://localhost:3001/notes').pipe(
+      delay(200),
+      retry(2),
+      tap((notes) => this.notes = notes),
+
+    )
   }
+
+  getMyNotes(idUser: string) {
+    console.log(idUser)
+    return this.http.get<INotes[]>('http://localhost:3001/notes').pipe(
+      retry(2),
+      map((data) => {
+        return data.filter(note => note.userId === idUser)
+      })
+
+    )
+  }
+
 
   getNote(id: number){
     return this.http.get<INotes>(`http://localhost:3001/notes/${id}`)
@@ -24,7 +41,9 @@ export class NotesService {
 
 
   createNote(note: INotes) {
-    return this.http.post<INotes>('http://localhost:3001/notes', note)/* .pipe(map((res: INotes) => res)) */
+    return this.http.post<INotes>('http://localhost:3001/notes', note).pipe(
+      tap(note => this.notes.push(note))
+    )
   }
 
   delete(id: number){
@@ -39,4 +58,3 @@ export class NotesService {
     }))
   }
 }
-//app.delete('/api/names/:id', (req, res) => { const index = names.indexOf(name); names.splice(index,1); res.send(names); })

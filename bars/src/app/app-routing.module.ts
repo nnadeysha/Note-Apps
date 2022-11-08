@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotesResolver } from './components/admin/resolvers/notes.resolver';
 
 
+
+
 const routes: Routes = [
   {path: '', redirectTo: '/main-page', pathMatch: 'full'},
   {path: 'main-page', component: MainPageComponent},
