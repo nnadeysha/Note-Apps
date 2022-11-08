@@ -35,11 +35,6 @@ export class NotesService {
   }
 
 
-  getNote(id: number){
-    return this.http.get<INotes>(`http://localhost:3001/notes/${id}`)
-  }
-
-
   createNote(note: INotes) {
     return this.http.post<INotes>('http://localhost:3001/notes', note).pipe(
       tap(note => this.notes.push(note))
@@ -53,7 +48,7 @@ export class NotesService {
   }
 
   update(data: INotes, id: number){
-    return this.http.put<INotes>('http://localhost:3001/notes/'+id, data).pipe(map((res: INotes)=> {
+    return this.http.put<INotes>(`http://localhost:3001/notes/${id}`, data).pipe(map((res: INotes)=> {
       return res
     }))
   }

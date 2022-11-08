@@ -17,12 +17,7 @@ children: [
   }, component: MyNotesComponent},
   {path: 'notes', component: NotesComponent, resolve: {
     notes: NotesResolver
-  }},
-  /* {path: 'notes/note/:id', component: NoteEditComponent, resolve: {
-    note: NoteResolver
-  }}, */
-  {path: 'notes/note', redirectTo: 'notes', pathMatch: 'full'},
-
+  }}
 ]}
 ];
 
