@@ -32,7 +32,7 @@ export class NotesComponent implements OnInit {
   }
 
   isAuth(): boolean {
-    return this.authService.isLoggedIn
+    return this.authService.isLoggedIn()
   }
 
 }

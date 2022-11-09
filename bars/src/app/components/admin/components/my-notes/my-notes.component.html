@@ -25,25 +25,25 @@
   <div class="mb-md-5 mt-md-4 pb-5">
 
     <form [formGroup]="noteForm" (ngSubmit)="addNewNote()">
-      <div class="form-outline form-white mb-4">
-        <label class="form-label" for="typeTextX">Name</label>
+      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Name is required. The field can only contain letters of the English alphabet, numbers and spaces">
+        <label class="form-label" for="typeTextX">Name</label> <span class="text-red-600"> *</span>
         <input formControlName="name" type="text" id="typeTextX" class="form-control form-control-lg" />
         <p *ngIf="this.noteForm.get('name')?.invalid && this.noteForm.get('name')?.touched"><small
             class="text-danger">Name is required (min. length = 2, max. length = 20)</small></p>
       </div>
-      <div class="form-outline form-white mb-4">
-        <label class="form-label" for="typeNumberX">Number</label>
+      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Number is required (min value = 1, max value = 10000)">
+        <label class="form-label" for="typeNumberX">Number</label><span class="text-red-600"> *</span>
         <input formControlName="number" type="number" id="typeNumberX" class="form-control form-control-lg" />
         <p *ngIf="this.noteForm.get('number')?.invalid && this.noteForm.get('number')?.touched"><small
             class="text-danger">Number is required (min value = 1, max value = 10000)</small></p>
       </div>
-      <div class="form-outline form-white mb-4">
-        <label class="form-label" for="typeDateX">Date</label>
+      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Date is required">
+        <label class="form-label" for="typeDateX">Date</label><span class="text-red-600"> *</span>
         <input formControlName="date" type="date" id="typeDateX" class="form-control form-control-lg" />
         <p *ngIf="this.noteForm.get('date')?.invalid && this.noteForm.get('date')?.touched"><small
             class="text-danger">Date is required</small></p>
       </div>
-      <div class="form-outline form-white mb-4">
+      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Max. length is 500">
         <label class="form-label" for="textarea">Remark</label>
         <textarea formControlName="remark" class="form-control" id="textarea" rows="3"></textarea>
 

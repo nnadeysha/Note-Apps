@@ -9,9 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AuthService {
-  isLoggedIn!: boolean;
 
   constructor(private router: Router, private http: HttpClient) {}
+
+  setToken(token: string){
+    return localStorage.setItem("token", token)
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  isLoggedIn() {
+    return this.getToken() !== null;
+  }
 
   login(userInfo: IUser) {
     this.http.get<IUser[]>('http://localhost:3001/users').subscribe((res) => {
@@ -22,7 +33,7 @@ export class AuthService {
         );
       });
       if (user) {
-        this.isLoggedIn = true;
+        this.setToken(userInfo.email);
         alert('Login success');
         this.router.navigate(['admin'+'/'+`${user.id}`]);
         return of(true);
@@ -55,6 +66,6 @@ export class AuthService {
 
   logout() {
     this.router.navigate(['main-page']);
-    this.isLoggedIn = false;
+    localStorage.removeItem("token");
   }
 }

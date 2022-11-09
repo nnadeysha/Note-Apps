@@ -1,6 +1,6 @@
 import { NotesService } from './../../../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { INotes } from 'src/app/model/notes.interface';
 import { ModalService } from 'src/app/services/modal.service';
@@ -10,6 +10,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { NotesModel } from 'src/app/model/notes.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-my-notes',
@@ -31,6 +32,8 @@ export class MyNotesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public modalService: ModalService,
     public notesService: NotesService,
+    private authService: AuthService,
+    private router: Router
     
   ) {
     this.idUser = activatedRoute.snapshot.params['id'];
@@ -39,7 +42,9 @@ export class MyNotesComponent implements OnInit {
 
   
   ngOnInit() {
-    this.getMyNotes();
+    if(this.authService.isLoggedIn()){
+      this.router.navigate['admin/id'];
+      this.getMyNotes();
     this.noteForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -59,6 +64,9 @@ export class MyNotesComponent implements OnInit {
         Validators.max(10000),
       ]),
     });
+
+    }
+    
   }
 
   getMyNotes() {
