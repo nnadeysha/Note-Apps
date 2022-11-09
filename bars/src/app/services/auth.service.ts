@@ -1,13 +1,13 @@
 import { IUser } from './../model/user.interface';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, tap, throwError } from 'rxjs';
+import {  of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   isLoggedIn!: boolean;
 

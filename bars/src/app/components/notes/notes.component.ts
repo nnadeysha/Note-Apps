@@ -24,7 +24,6 @@ export class NotesComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    /* this.personalList = this.adminService.getPersonalList(); */
     this.notesList = this.activatedRoute.data.pipe(map((data)=> {
       return data?.['notes']
     }

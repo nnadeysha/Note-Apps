@@ -1,5 +1,5 @@
-import { catchError, delay, map, retry } from 'rxjs/operators';
-import { filter, Observable, tap } from 'rxjs';
+import { delay, map, retry } from 'rxjs/operators';
+import { Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { INotes } from 'src/app/model/notes.interface';
@@ -24,7 +24,6 @@ export class NotesService {
   }
 
   getMyNotes(idUser: string) {
-    console.log(idUser)
     return this.http.get<INotes[]>('http://localhost:3001/notes').pipe(
       retry(2),
       map((data) => {
@@ -35,7 +34,7 @@ export class NotesService {
   }
 
 
-  createNote(note: INotes) {
+  create(note: INotes) {
     return this.http.post<INotes>('http://localhost:3001/notes', note).pipe(
       tap(note => this.notes.push(note))
     )

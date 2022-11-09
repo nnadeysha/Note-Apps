@@ -1,14 +1,14 @@
 import { NotesService } from './../../../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { INotes } from 'src/app/model/notes.interface';
 import { ModalService } from 'src/app/services/modal.service';
 import {
-  FormBuilder,
   FormGroup,
   Validators,
   FormControl,
+  FormBuilder,
 } from '@angular/forms';
 import { NotesModel } from 'src/app/model/notes.model';
 
@@ -25,14 +25,20 @@ export class MyNotesComponent implements OnInit {
   noteForm!: FormGroup;
   noteModelObj: INotes = new NotesModel();
   isEdit!: boolean;
+
+  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public modalService: ModalService,
-    public notesService: NotesService
+    public notesService: NotesService,
+    
   ) {
     this.idUser = activatedRoute.snapshot.params['id'];
+    
   }
 
+  
   ngOnInit() {
     this.getMyNotes();
     this.noteForm = new FormGroup({
@@ -66,28 +72,21 @@ export class MyNotesComponent implements OnInit {
       this.getMyNotes();
     });
   }
-  resetForm() {
-    this.isEdit = false;
-    this.noteForm.reset();
-  }
 
   addNewNote() {
-
-    this.noteModelObj.name = this.noteForm.value.name;
+    /* this.noteModelObj.name = this.noteForm.value.name;
     this.noteModelObj.date = this.noteForm.value.date;
     this.noteModelObj.remark = this.noteForm.value.remark;
     this.noteModelObj.userId = this.idUser.toString();
-    this.noteModelObj.number = this.noteForm.value.number;
+    this.noteModelObj.number = this.noteForm.value.number; */
 
-    this.notesService.createNote(this.noteModelObj).subscribe(
+    this.notesService.create(this.noteForm.value).subscribe(
       () => {
         alert('Note Added Successfull');
         this.modalService.close();
         this.getMyNotes();
       },
-      (err) => {
-        alert('Something went wrong');
-      }
+      err => console.log('HTTP Error', err),
     );
   }
 
@@ -102,7 +101,6 @@ export class MyNotesComponent implements OnInit {
   }
 
   updateNote() {
-
     this.noteModelObj.name = this.noteForm.value.name;
     this.noteModelObj.date = this.noteForm.value.date;
     this.noteModelObj.remark = this.noteForm.value.remark;
@@ -113,10 +111,19 @@ export class MyNotesComponent implements OnInit {
       .update(this.noteModelObj, this.noteModelObj.id)
       .subscribe((res) => {
         alert('Updated Successfully');
+
         this.modalService.close();
         this.getMyNotes();
       });
   }
 
+  removeForm(){
+    console.log(this.noteModelObj.id)
+    this.isEdit = false;
+    this.noteForm.controls['name'].reset();
+    this.noteForm.controls['number'].reset();
+    this.noteForm.controls['date'].reset();
+    this.noteForm.controls['remark'].reset();
+  }
 
 }

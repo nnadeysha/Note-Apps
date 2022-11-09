@@ -4,7 +4,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,10 +14,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   signUpSubmit() {
-    console.log(this.signUpForm.value);
     this.authService.signUp(this.signUpForm.value);
   }
 
