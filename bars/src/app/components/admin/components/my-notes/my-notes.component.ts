@@ -8,7 +8,6 @@ import {
   FormGroup,
   Validators,
   FormControl,
-  FormBuilder,
 } from '@angular/forms';
 import { NotesModel } from 'src/app/model/notes.model';
 
@@ -74,30 +73,17 @@ export class MyNotesComponent implements OnInit {
   }
 
   addNewNote() {
-    /* this.noteModelObj.name = this.noteForm.value.name;
-    this.noteModelObj.date = this.noteForm.value.date;
-    this.noteModelObj.remark = this.noteForm.value.remark;
-    this.noteModelObj.userId = this.idUser.toString();
-    this.noteModelObj.number = this.noteForm.value.number; */
-
     this.notesService.create(this.noteForm.value).subscribe(
       () => {
         alert('Note Added Successfull');
         this.modalService.close();
         this.getMyNotes();
       },
-      err => console.log('HTTP Error', err),
+      err => {
+        alert('Something whent wrong');
+        console.log('HTTP Error', err)
+      },
     );
-  }
-
-  openEditNoteForm(data: INotes) {
-    this.isEdit = true;
-    this.noteModelObj.id = data.id;
-    this.noteForm.controls['name'].setValue(data.name);
-    this.noteForm.controls['number'].setValue(data.number);
-    this.noteForm.controls['date'].setValue(data.date);
-    this.noteForm.controls['remark'].setValue(data.remark);
-
   }
 
   updateNote() {
@@ -117,8 +103,20 @@ export class MyNotesComponent implements OnInit {
       });
   }
 
+
+
+
+  openEditNoteForm(data: INotes) {
+    this.isEdit = true;
+    this.noteModelObj.id = data.id;
+    this.noteForm.controls['name'].setValue(data.name);
+    this.noteForm.controls['number'].setValue(data.number);
+    this.noteForm.controls['date'].setValue(data.date);
+    this.noteForm.controls['remark'].setValue(data.remark);
+
+  }
+
   removeForm(){
-    console.log(this.noteModelObj.id)
     this.isEdit = false;
     this.noteForm.controls['name'].reset();
     this.noteForm.controls['number'].reset();
