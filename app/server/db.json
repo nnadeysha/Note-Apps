@@ -23,6 +23,12 @@
       "email": "1@mail.ru",
       "password": "1123444eddd",
       "id": 4
+    },
+    {
+      "name": "test",
+      "email": "adm@gmail.com",
+      "password": "admin123ggggg",
+      "id": 5
     }
   ],
   "notes": [
@@ -97,6 +103,22 @@
       "userId": "1",
       "number": 9999,
       "id": 26
+    },
+    {
+      "userId": "5",
+      "name": "test test",
+      "date": "2022-11-12",
+      "id": 28,
+      "remark": "test",
+      "number": 2
+    },
+    {
+      "name": "test test test",
+      "date": "2022-11-13",
+      "remark": "testtesttesttesttesttesttest",
+      "userId": "5",
+      "number": 3,
+      "id": 29
     }
   ]
 }
