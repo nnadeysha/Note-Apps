@@ -1,5 +1,5 @@
 # Note apps. <br/>
-This application has the following functions: <br/>
+This application has the next functions: <br/>
 - authorization <br/>
 - view list of notes <br/>
 - view, create, delete, edit your records by an authorized user <br/>
