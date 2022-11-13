@@ -1,4 +1,8 @@
 # Note apps.
+This application has the following functions:
+-authorization
+- view list of notes
+-view, create, delete, edit your records by an authorized user
 
 ## This project was created with [The Angular CLI](https://angular.io/guide/setup-local) and [JSON Server](https://github.com/typicode/json-server)
 
