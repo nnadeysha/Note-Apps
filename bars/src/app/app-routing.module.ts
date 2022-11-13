@@ -6,7 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotesResolver } from './components/admin/resolvers/notes.resolver';
+import { NotesResolver } from './components/resolvers/notes.resolver';
 
 
 

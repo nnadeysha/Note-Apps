@@ -43,17 +43,17 @@
         <p *ngIf="this.noteForm.get('date')?.invalid && this.noteForm.get('date')?.touched"><small
             class="text-danger">Date is required</small></p>
       </div>
-      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Max. length is 500">
+      <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Max. length is 5000">
         <label class="form-label" for="textarea">Remark</label>
         <textarea formControlName="remark" class="form-control" id="textarea" rows="3"></textarea>
 
         <p *ngIf="this.noteForm.get('remark')?.invalid && this.noteForm.get('remark')?.touched"><small
-            class="text-danger">Max. length is 500</small></p>
+            class="text-danger">Max. length is 5000</small></p>
       </div>
       <button *ngIf="!isEdit" [disabled]="noteForm.invalid" type="submit"
         class="py-2 px-4 bg-blue-300 text-white rounded">Create</button>
 
-      <button *ngIf="isEdit"  (click)="updateNote()" type="button" class="py-2 px-4 bg-blue-300 text-white rounded">Save</button>
+      <button *ngIf="isEdit" [disabled]="noteForm.invalid"  (click)="updateNote()" type="button" class="py-2 px-4 bg-blue-300 text-white rounded">Save</button>
       <button (click)="modalService.close()" type="button"
         class="py-2 px-4 bg-red-300 text-white rounded">Cancel</button>
     </form>

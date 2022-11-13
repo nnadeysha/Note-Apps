@@ -1,4 +1,4 @@
-import {  NotesService } from '../../../services/notes.service';
+import {  NotesService } from '../../services/notes.service';
 import { Injectable } from '@angular/core';
 import {
   Router, Resolve,
@@ -11,7 +11,7 @@ import { INotes } from 'src/app/model/notes.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class NoteResolver implements Resolve<INotes[]> {
+export class MyNotesResolver implements Resolve<INotes[]> {
   constructor(
     private notesService: NotesService
   ){

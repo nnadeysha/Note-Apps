@@ -26,7 +26,7 @@ export class MyNotesComponent implements OnInit {
   noteModelObj: INotes = new NotesModel();
   isEdit!: boolean;
 
-  
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,13 +34,13 @@ export class MyNotesComponent implements OnInit {
     public notesService: NotesService,
     private authService: AuthService,
     private router: Router
-    
+
   ) {
     this.idUser = activatedRoute.snapshot.params['id'];
-    
+
   }
 
-  
+
   ngOnInit() {
     if(this.authService.isLoggedIn()){
       this.router.navigate['admin/id'];
@@ -50,12 +50,11 @@ export class MyNotesComponent implements OnInit {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(20),
-        Validators.pattern(/^(?=[a-z0-9])[a-z0-9\s]{0,99}[a-z0-9]$/i),
+        Validators.pattern(/^(?=[а-яА-ЯёЁa-zA-Z0-9])[а-яА-ЯёЁa-zA-Z0-9\s]{0,99}[а-яА-ЯёЁa-zA-Z0-9]$/i),
       ]),
       date: new FormControl('', [Validators.required]),
       remark: new FormControl('', [
-        Validators.pattern(/^(?=[a-z0-9])[a-z0-9\s]{0,99}[a-z0-9]$/i),
-        Validators.maxLength(500),
+        Validators.maxLength(5000),
       ]),
       userId: new FormControl(this.idUser.toString()),
       number: new FormControl(0, [
@@ -66,7 +65,7 @@ export class MyNotesComponent implements OnInit {
     });
 
     }
-    
+
   }
 
   getMyNotes() {
@@ -81,6 +80,7 @@ export class MyNotesComponent implements OnInit {
   }
 
   addNewNote() {
+    this.noteForm.value.remark = this.noteForm.value.remark.trim();
     this.notesService.create(this.noteForm.value).subscribe(
       () => {
         alert('Note Added Successfull');
@@ -97,7 +97,7 @@ export class MyNotesComponent implements OnInit {
   updateNote() {
     this.noteModelObj.name = this.noteForm.value.name;
     this.noteModelObj.date = this.noteForm.value.date;
-    this.noteModelObj.remark = this.noteForm.value.remark;
+    this.noteModelObj.remark = this.noteForm.value.remark.trim();
     this.noteModelObj.userId = this.idUser.toString();
     this.noteModelObj.number = this.noteForm.value.number;
 

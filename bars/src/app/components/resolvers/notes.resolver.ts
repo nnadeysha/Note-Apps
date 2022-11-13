@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Resolve} from '@angular/router';
 import { delay, Observable } from 'rxjs';
 import { INotes } from 'src/app/model/notes.interface';
-import { NotesService } from '../../../services/notes.service';
+import { NotesService } from '../../services/notes.service';
 
 @Injectable({
   providedIn: 'root'
