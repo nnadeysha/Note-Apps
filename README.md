@@ -1,4 +1,4 @@
-# Notes. <br/>
+# Notes <br/>
 This application has the next functions: <br/>
 - authorization <br/>
 - view list of notes <br/>
