@@ -80,7 +80,12 @@ export class MyNotesComponent implements OnInit {
   }
 
   addNewNote() {
-    this.noteForm.value.remark = this.noteForm.value.remark.trim();
+    if(this.noteForm.value.remark){
+      this.noteForm.value.remark = this.noteForm.value.remark.trim();
+    }
+
+    const userData = this.authService.getUserData('5');
+    console.log(userData)
     this.notesService.create(this.noteForm.value).subscribe(
       () => {
         alert('Note Added Successfull');
