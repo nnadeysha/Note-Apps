@@ -1,4 +1,3 @@
-import { IUser } from './../../../../model/user.interface';
 import { NotesService } from './../../../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,9 +5,7 @@ import { Observable } from 'rxjs';
 import { INotes } from 'src/app/model/notes.interface';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { NotesModel } from 'src/app/model/notes.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-my-notes',
@@ -21,7 +18,6 @@ export class MyNotesComponent implements OnInit {
   notesList!: Observable<INotes[]>;
   notes!: INotes[];
   noteForm!: FormGroup;
-  noteModelObj: INotes = new NotesModel();
   isEdit!: boolean;
 
   constructor(
@@ -61,6 +57,7 @@ export class MyNotesComponent implements OnInit {
           Validators.min(1),
           Validators.max(10000),
         ]),
+        id: new FormControl(),
       });
     }
   }
@@ -96,14 +93,8 @@ export class MyNotesComponent implements OnInit {
   }
 
   updateNote() {
-    this.noteModelObj.name = this.noteForm.value.name;
-    this.noteModelObj.date = this.noteForm.value.date;
-    this.noteModelObj.remark = this.noteForm.value.remark.trim();
-    this.noteModelObj.userId = this.idUser.toString();
-    this.noteModelObj.number = this.noteForm.value.number;
-
     this.notesService
-      .update(this.noteModelObj, this.noteModelObj.id)
+      .update(this.noteForm.value, this.noteForm.value.id)
       .subscribe((res) => {
         alert('Updated Successfully');
 
@@ -114,7 +105,7 @@ export class MyNotesComponent implements OnInit {
 
   openEditNoteForm(data: INotes) {
     this.isEdit = true;
-    this.noteModelObj.id = data.id;
+    this.noteForm.controls['id'].setValue(data.id);
     this.noteForm.controls['name'].setValue(data.name);
     this.noteForm.controls['number'].setValue(data.number);
     this.noteForm.controls['date'].setValue(data.date);
