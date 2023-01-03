@@ -1,23 +1,22 @@
 import { IUser } from './../model/user.interface';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {  map, of, retry } from 'rxjs';
+import { map, of, retry, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
-
+  user!: IUser;
   constructor(private router: Router, private http: HttpClient) {}
 
-  setToken(token: string){
-    return localStorage.setItem("token", token)
+  setToken(token: string) {
+    return localStorage.setItem('token', token);
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
   isLoggedIn() {
@@ -35,7 +34,7 @@ export class AuthService {
       if (user) {
         this.setToken(userInfo.email);
         alert('Login success');
-        this.router.navigate(['admin'+'/'+`${user.id}`]);
+        this.router.navigate(['admin' + '/' + `${user.id}`]);
         return of(true);
       } else {
         alert('User not found');
@@ -44,11 +43,8 @@ export class AuthService {
     });
   }
 
-  getUserData(userId: string){
-    this.http.get<IUser>(`http://localhost:3001/users/${userId}`).pipe(map((res: IUser)=> {
-      console.log(res)
-      return res
-    }))
+  getUserData(userId: string) {
+    return this.http.get<IUser>(`http://localhost:3001/users/${userId}`);
   }
 
   signUp(userInfo: IUser) {
@@ -73,6 +69,6 @@ export class AuthService {
 
   logout() {
     this.router.navigate(['main-page']);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   }
 }
