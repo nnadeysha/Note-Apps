@@ -1,6 +1,6 @@
-<div *ngIf="!isAuth()" class="p-1 mb-5">
+<!-- <div *ngIf="!isAuth()" class="p-1 mb-5">
   <button  class="btn btn-secondary btn-sm" [routerLink]="['../']">Return to main page</button>
-</div>
+</div> -->
 
   <div class="col-4 m-0 overflow-y-scroll h-4/5 w-full px-52 pb-50">
     <div
@@ -13,6 +13,11 @@
           <h3>"{{note.name}}" № {{note.number}}</h3>
             <p>Date: {{note.date}}</p>
             <p *ngIf="note.remark">Remark: {{note.remark}}</p>
+        </div>
+        <div>
+          <span> Created by {{note.userName}}</span>
+          <span>{{note.currentDate}}</span>
+
         </div>
       </div>
     </div>

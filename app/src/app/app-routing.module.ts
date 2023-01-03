@@ -13,7 +13,10 @@ import { NotesResolver } from './components/resolvers/notes.resolver';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main-page', pathMatch: 'full'},
-  {path: 'main-page', component: MainPageComponent},
+  {path: 'main-page', component: MainPageComponent,
+  resolve: {
+    notes: NotesResolver
+  }},
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'notes', component: NotesComponent, resolve: {

@@ -1,7 +1,7 @@
 import { IUser } from './../model/user.interface';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {  of } from 'rxjs';
+import {  map, of, retry } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -42,6 +42,13 @@ export class AuthService {
         return of(false);
       }
     });
+  }
+
+  getUserData(userId: string){
+    this.http.get<IUser>(`http://localhost:3001/users/${userId}`).pipe(map((res: IUser)=> {
+      console.log(res)
+      return res
+    }))
   }
 
   signUp(userInfo: IUser) {

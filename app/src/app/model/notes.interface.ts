@@ -4,5 +4,7 @@ export interface INotes {
   date: string,
   id: number,
   remark?: string,
-  number: number
+  number: number,
+  userName : string,
+  currentDate: string
 }
