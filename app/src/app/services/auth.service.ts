@@ -1,3 +1,4 @@
+import { ModalService } from './modal.service';
 import { IUser } from './../model/user.interface';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   user!: IUser;
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private ModalService: ModalService) {}
 
   setToken(token: string) {
     return localStorage.setItem('token', token);

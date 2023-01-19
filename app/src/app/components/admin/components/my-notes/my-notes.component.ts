@@ -66,9 +66,9 @@ export class MyNotesComponent implements OnInit {
     this.notesList = this.notesService.getMyNotes(this.idUser);
   }
 
-  deleteNote(id: number) {
-    this.notesService.delete(id).subscribe((res) => {
-      alert('Note deleted');
+  deleteNote() {
+    this.notesService.delete(this.noteForm.value.id).subscribe((res) => {
+      this.modalService.close();
       this.getMyNotes();
     });
   }
@@ -81,12 +81,11 @@ export class MyNotesComponent implements OnInit {
 
     this.notesService.create(this.noteForm.value).subscribe(
       () => {
-        alert('Note Added Successfull');
-        this.modalService.close();
+        this.modalService.open('Note Added Successfull', false);
         this.getMyNotes();
       },
       (err) => {
-        alert('Something whent wrong');
+        this.modalService.open('Something whent wrong', false);
         console.log('HTTP Error', err);
       }
     );
@@ -96,9 +95,7 @@ export class MyNotesComponent implements OnInit {
     this.notesService
       .update(this.noteForm.value, this.noteForm.value.id)
       .subscribe((res) => {
-        alert('Updated Successfully');
-
-        this.modalService.close();
+        this.modalService.open('Updated Successfully', false);
         this.getMyNotes();
       });
   }
@@ -118,5 +115,6 @@ export class MyNotesComponent implements OnInit {
     this.noteForm.controls['number'].reset();
     this.noteForm.controls['date'].reset();
     this.noteForm.controls['remark'].reset();
+    this.noteForm.controls['id'].reset();
   }
 }

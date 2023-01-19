@@ -1,18 +1,24 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalService {
+  isVisible$ = new BehaviorSubject<boolean>(false);
+  title!: string;
+  isForm!: boolean;
+  isDeleteForm?: boolean;
 
-  isVisible$ = new BehaviorSubject<boolean>(false)
-
-  open(){
-    this.isVisible$.next(true)
+  open(title: string, isForm: boolean, isDeleteForm?: boolean) {
+    this.isVisible$.next(true);
+    this.title = title;
+    this.isForm = isForm;
+    this.isDeleteForm = isDeleteForm;
   }
 
-  close(){
-    this.isVisible$.next(false)
+  close() {
+    this.isVisible$.next(false);
   }
 }

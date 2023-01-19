@@ -1,5 +1,6 @@
-<button class="btn btn-secondary btn-lg text-white m-2" (click)="modalService.open();removeForm() ">Add new
-  note</button>
+<button class="btn btn-secondary btn-lg text-white m-2"
+  (click)="modalService.open('Create new note', true);removeForm() ">
+  Add new note</button>
 
 
 <div class="col-4 m-0 overflow-y-scroll h-3/5 w-full px-52 z-0">
@@ -8,8 +9,9 @@
     <div class="card-body p-2 text-center">
       <div class="flex items-end">
         <button type="button" class="btn btn-secondary btn-sm"
-          (click)="modalService.open(); openEditNoteForm(note)">Edit</button>
-        <button (click)="deleteNote(note.id)" type="button" class="btn btn-secondary btn-sm">Delete</button>
+          (click)="modalService.open('Edit note', true); openEditNoteForm(note)">Edit</button>
+        <button (click)="modalService.open('Delete note', false, true); openEditNoteForm(note)" type="button"
+          class="btn btn-secondary btn-sm">Delete</button>
       </div>
       <div>
         <h3>"{{note.name}}" № {{note.number}}</h3>
@@ -22,10 +24,15 @@
 
 </div>
 
-<app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
-  <div class="mb-md-5 mt-md-4 pb-5">
+<app-modal *ngIf="modalService.isVisible$ | async ">
 
-    <form [formGroup]="noteForm" (ngSubmit)="addNewNote()">
+  <div class="mb-md-5 mt-md-4 pb-5">
+    <div [formGroup]="noteForm" *ngIf="!modalService.isForm && modalService.isDeleteForm">
+      <button (click)="deleteNote()" type="button" class="py-2 px-4 bg-blue-300 text-white rounded">Delete</button>
+      <button (click)="modalService.close()" type="button"
+        class="py-2 px-4 bg-red-300 text-white rounded">Cancel</button>
+    </div>
+    <form [formGroup]="noteForm" (ngSubmit)="addNewNote()" *ngIf="modalService.isForm && !modalService.isDeleteForm">
       <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top"
         title="Name is required. The field can only contain letters of the English alphabet, numbers and spaces">
         <label class="form-label" for="typeTextX">Name</label> <span class="text-red-600"> *</span>
