@@ -11,6 +11,12 @@
       "email": "admin@gmail.com",
       "password": "admin123ggggg",
       "id": 2
+    },
+    {
+      "name": "nadya",
+      "email": "nadya@gmail.com",
+      "password": "1005Dobro",
+      "id": 3
     }
   ],
   "notes": [
@@ -43,6 +49,26 @@
       "currentDate": "22/01/2023",
       "number": 4,
       "id": 4
+    },
+    {
+      "name": "bhbvccx",
+      "date": "2023-01-13",
+      "remark": null,
+      "userId": "3",
+      "userName": "nadya",
+      "currentDate": "22/01/2023",
+      "number": 5,
+      "id": 7
+    },
+    {
+      "name": "sgvsvsxd",
+      "date": "2023-01-21",
+      "remark": null,
+      "userId": "3",
+      "userName": "nadya",
+      "currentDate": "22/01/2023",
+      "number": 333,
+      "id": 8
     }
   ]
 }

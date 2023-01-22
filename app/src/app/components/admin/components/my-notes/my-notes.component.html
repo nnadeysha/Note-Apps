@@ -27,8 +27,8 @@
 <app-modal *ngIf="modalService.isVisible$ | async ">
 
   <div class="mb-md-5 mt-md-4 pb-5">
-    <div [formGroup]="noteForm" *ngIf="!modalService.isForm && modalService.isDeleteForm">
-      <button (click)="deleteNote()" type="button" class="py-2 px-4 bg-blue-300 text-white rounded">Delete</button>
+    <div *ngIf="!modalService.isForm && modalService.isDeleteForm">
+      <button (click)="deleteNote()" type="button" class="py-2 px-4 mr-4 bg-blue-300 text-white rounded">Delete</button>
       <button (click)="modalService.close()" type="button"
         class="py-2 px-4 bg-red-300 text-white rounded">Cancel</button>
     </div>
@@ -37,8 +37,14 @@
         title="Name is required. The field can only contain letters of the English alphabet, numbers and spaces">
         <label class="form-label" for="typeTextX">Name</label> <span class="text-red-600"> *</span>
         <input formControlName="name" type="text" id="typeTextX" class="form-control form-control-lg" />
-        <p *ngIf="this.noteForm.get('name')?.invalid && this.noteForm.get('name')?.touched"><small
-            class="text-danger">Name is required (min. length = 2, max. length = 20)</small></p>
+        <p
+          *ngIf="(this.noteForm.get('name')?.invalid && this.noteForm.get('name')?.touched) || this.noteForm.get('name')?.dirty">
+          <small class="text-danger" *ngIf="this.noteForm.get('name')?.errors?.required">Name is required (min. length =
+            2, max. length = 20)</small>
+          <small class="text-danger" *ngIf="this.noteForm.get('name')?.errors?.pattern">The name must
+            consist of letters and numbers, without symbols. (min. length = 2, max. length =
+            20)</small>
+        </p>
       </div>
       <div class="form-outline form-white mb-4" data-bs-toggle="tooltip" data-bs-placement="top"
         title="Number is required (min value = 1, max value = 10000)">

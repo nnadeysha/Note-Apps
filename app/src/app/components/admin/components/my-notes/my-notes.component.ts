@@ -77,6 +77,7 @@ export class MyNotesComponent implements OnInit {
     if (this.noteForm.value.remark) {
       this.noteForm.value.remark = this.noteForm.value.remark.trim();
     }
+    console.log(this.userName);
     this.noteForm.value.userName = this.userName;
 
     this.notesService.create(this.noteForm.value).subscribe(
@@ -107,6 +108,7 @@ export class MyNotesComponent implements OnInit {
     this.noteForm.controls['number'].setValue(data.number);
     this.noteForm.controls['date'].setValue(data.date);
     this.noteForm.controls['remark'].setValue(data.remark);
+    this.noteForm.controls['userName'].setValue(data.userName);
   }
 
   removeForm() {
@@ -116,5 +118,6 @@ export class MyNotesComponent implements OnInit {
     this.noteForm.controls['date'].reset();
     this.noteForm.controls['remark'].reset();
     this.noteForm.controls['id'].reset();
+    this.noteForm.controls['userName'].reset();
   }
 }
