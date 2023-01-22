@@ -10,7 +10,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   user!: IUser;
-  constructor(private router: Router, private http: HttpClient, private ModalService: ModalService) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private ModalService: ModalService
+  ) {}
 
   setToken(token: string) {
     return localStorage.setItem('token', token);
@@ -34,11 +38,13 @@ export class AuthService {
       });
       if (user) {
         this.setToken(userInfo.email);
-        alert('Login success');
+        this.ModalService.open('Login success', false);
+
         this.router.navigate(['admin' + '/' + `${user.id}`]);
         return of(true);
       } else {
-        alert('User not found');
+        this.ModalService.open('User not found', false);
+
         return of(false);
       }
     });
@@ -57,12 +63,17 @@ export class AuthService {
         return this.http
           .post<IUser>('http://localhost:3001/users', userInfo)
           .subscribe((res) => {
-            alert('Signup successful!');
+            this.ModalService.open('Signup successful!', false);
+
             this.router.navigate(['login']);
             return of(true);
           });
       } else {
-        alert('The user with this email is already registered!');
+        this.ModalService.open(
+          'The user with this email is already registered!',
+          false
+        );
+
         return of(true);
       }
     });
